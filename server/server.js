@@ -20,6 +20,6 @@ app.use("/users",authRouter)
 
 
 app.listen(PORT,()=>{
-    console.log(`app is listening at ${PORT}`);
+    console.log(`app is listening - ${PORT}`);
     connectMongoDB()
 })

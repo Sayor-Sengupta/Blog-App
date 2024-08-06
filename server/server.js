@@ -1,4 +1,5 @@
 import express from 'express'
+import path from "path"
 import cors from 'cors'
 import authRouter from './routes/auth.routes.js'
 import connectMongoDB from './db/connectMongoDB.js'
@@ -8,6 +9,7 @@ import blogRouter from "./routes/blog.routes.js"
 const app = express()
 
 dotenv.config()
+const __dirname = path.resolve()
 const corsOptions = {origin : 'http://localhost:5173' ,credentials:true}
 const PORT = process.env.PORT || 5000
 app.use(cors(corsOptions))
@@ -19,6 +21,9 @@ app.use(cookieParser())
 //routes
 app.use("/users",authRouter)
 app.use("/users/blog",blogRouter)
+
+
+
 app.use(express.static(path.join(__dirname,"/client/dist")))
 app.get("*",(req,res)=>{
   res.sendFile(path.join(__dirname,"client","dist","index.html"))

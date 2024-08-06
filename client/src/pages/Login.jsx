@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import HomeButtons from "../components/Buttons/HomeButtons";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
+
+  const[userName,setUsername ] = useState ("")
+  const[password,setPassword ] = useState ("")
+  const [redirect, SetRedirect] = useState(false);
+  
+
+  
+  const handleSubmit =async (e)=>{
+    e.preventDefault();
+    const res = await axios.post(
+      "http://localhost:5000/users/login",{userName,password}
+    )
+
+      
+      console.log(res);
+      if (res.status == 200){
+        SetRedirect(true)
+      }
+
+    
+    
+  }
+  if(redirect){
+   return <Navigate to={'/Home'}/>
+  }
   return (
     <>
-      <div className="flex  justify-center items-center">
-        <form className="flex flex-col justify-center gap-5 " >
+      <div className="flex  justify-center items-center ">
+        <form className="flex flex-col justify-center gap-5 " onSubmit={handleSubmit} >
          
           <label className="input input-bordered input-accent flex items-center text-lg p-3 gap-2">
             <svg
@@ -16,7 +43,7 @@ const Login = () => {
             >
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
             </svg>
-            <input type="text" className="grow" placeholder="Username" />
+            <input type="text" className="grow" placeholder="Username" value={userName}onChange={(e) => setUsername(e.target.value)}/>
           </label>
           <label className="input input-bordered input-info flex items-center gap-2 text-lg p-3 ">
             <svg
@@ -31,10 +58,15 @@ const Login = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <input type="password" className="grow" placeholder="Password" />
+            <input type="password" className="grow" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <div className="flex justify-center">
-            <HomeButtons name="Login"/>
+          
+            {/* {loading ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : ( */}
+              <HomeButtons name="Login"/>
+            {/* )} */}
           </div>
         </form>
       </div>

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "start": "node Server/server.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client "
   },
   "author": "",
   "type": "module",
@@ -13,7 +15,9 @@
     "nodemon": "^3.1.4"
   },
   "dependencies": {
-    "cloudinary": "^2.3.1",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^2.4.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

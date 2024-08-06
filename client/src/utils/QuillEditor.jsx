@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-function MyComponent() {
-  const [value, setValue] = useState('');
+function MyComponent({value, onChange}) {
+  
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -14,13 +14,12 @@ function MyComponent() {
         { indent: '-1' },
         { indent: '+1' },
       ],
-      ['link', 'image'],
       ['clean'],  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
       [{ 'font': [] }],
       [{ 'align': [] }],
     ]
   };
 
-  return <ReactQuill theme="snow" value={value} onChange={setValue} modules={modules} />;
+  return <div className='bg-bl'><ReactQuill theme="snow" value={value} onChange={onChange} modules={modules} /></div>
 }
 export default MyComponent

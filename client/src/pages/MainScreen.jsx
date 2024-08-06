@@ -12,7 +12,7 @@ const MainScreen = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/users/blog/getPost");
+        const res = await axios.get("https://blog-app-ruc6.onrender.com/users/blog/getPost");
         console.log(res.data);
         setPosts(res.data.blog);
         setLoading(false); 

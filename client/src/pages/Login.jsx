@@ -14,7 +14,7 @@ const Login = () => {
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const res = await axios.post(
-      "http://localhost:5000/users/login",{userName,password}
+      "https://blog-app-ruc6.onrender.com/users/login",{userName,password}
     )
 
       

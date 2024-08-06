@@ -12,7 +12,7 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const res = await axios.get(
-        `http://localhost:5000/users/blog/getPostById/${id}`
+        `https://blog-app-ruc6.onrender.com/users/blog/getPostById/${id}`
       );
       setPost(res.data.blog);
       console.log(res.data);
